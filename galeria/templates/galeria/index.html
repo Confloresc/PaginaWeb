@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUPO CERO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/dc663d69b4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="asset/css/style.css">
+    <script src="asset/JavaScript/jquery-3.7.0.js"></script>
+
+
+</head>
+
+<body id="principal">
+
+    <!--Barra de navegación-->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand logo" href="./index.html">
+                <img src="./asset/img/LOGO.png" alt="Logo" width="30" height="30" class="d-inline-block">
+                Grupo Cero
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="pinturas.html">Pintura</a></li>
+                            <li><a class="dropdown-item" href="esculturas.html">Escultura</a></li>
+                            <li><a class="dropdown-item" href="orfebreria.html">Orfebreria</a></li>
+                            <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
+                            <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="artistas.html">Artistas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="perfil.html">Perfil</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+                </form>
+                <nav class="navbar bg-body-tertiary">
+                    <div>
+                        <a href="login.html"><button class="btn btn-outline-secondary" type="submit">Iniciar
+                                Sesion</button></a>
+                        <a href="registro.html"><button class=" btn btn-secondary ml-2"
+                                type="submit">Registrarse</button></a>
+
+                    </div>
+
+                    <a class="navbar-brand Carro" href="./index.html">
+                        <img src="./asset/img/carrito.png" alt="Carro" width="35" height="35" class="d-inline-block">
+
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <!--Carrusel-->
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="asset/img/banner/b1.png" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="asset/img/banner/b2.png" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="asset/img/banner/b3.png" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!--seccion 1-->
+    <div class="container mt-5 text-center">
+        <div class="row">
+            <h1>DISEÑOS DE ARTISTAS LOCALES</h1>
+            <div class="col-12">
+                <div class="col-sm-12 col-lg-5">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class=" tituloseccion1 col-lg-6 col-sm-12 p-4">
+                    <h3 class="novedadh3">El arte da sentido</h3>
+                    <p>Hacer crecer, conectar, apoyar a la comunidad artística a la que se pertenece es
+                        importante, ya que además de
+                        dar un significado al arte, se está formando una plataforma artística fuerte, sólida, y esto
+                        conlleva un
+                        bienestar a toda una comunidad. Por lo tanto, el papel de las galerías de arte CDMX es
+                        importante ya que
+                        tiene
+                        un rol importante en la forma en que los demás perciban el arte local y latinoamericano.</p>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        VER MAS
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">SITIO EN CONSTRUCCIÓN</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">SALIR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="tituloseccion1 col-lg-6 col-sm-12 p-4">
+                    <h3 class="novedadh3">Galerías Latinoaméricanas</h3>
+                    <p>Es importante que se organicen eventos, exposiciones, subastas para que se den a conocer artistas
+                        emergentes, también los ya consolidados pueden continuar teniendo una plataforma. Asimismo, el
+                        papel de
+                        las
+                        galerías en el arte latinoamericano y local, es el fortalecimiento de lazos, de formas nuevas
+                        asociaciones
+                        y
+                        de consolidar una cultura del consumo artística y consumos local.</p>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        VER MAS
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">SITIO EN CONSTRUCCIÓN</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">SALIR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tituloseccion1 col-lg-6 col-sm-12 p-4">
+                    <h3 class="novedadh3">El arte latinoamericano</h3>
+                    <p>Estar en contacto con la obra de artistas locales y de Latinoamérica, ayuda a que la visión que
+                        tenemos
+                        de
+                        ver el entorno que nos rodea. También les da un mayor sentido de la identidad histórica que
+                        tienen, así
+                        como
+                        las identidades de los demás. Ver el arte creado por la propia cultura y las culturas de los
+                        demás
+                        realmente
+                        puede ayudar a contextualizar nuestro lugar en el mundo.</p>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        VER MAS
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">SITIO EN CONSTRUCCIÓN</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">SALIR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tituloseccion1 col-lg-6 col-sm-12 p-4">
+                    <h3 class="novedadh3">Sin fronteras</h3>
+                    <p>Hoy en día, contar con internet y la posibilidad de llegar a más personas, que gente más allá de
+                        las
+                        fronteras locales y latinoamericanas puedan acceder a la obra de artistas tan variados,
+                        emergentes,
+                        consolidados, locales e innovadores de Chile y otros países de Latinoamérica, es una gran
+                        ventana para
+                        fortalecer la importancia de arte hecho en esta parte del mundo.</p>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        VER MAS
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">SITIO EN CONSTRUCCIÓN</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">SALIR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Tarjetas de categorias-->
+
+    <div class="container categorias text-center mt-5">
+        <div class="row">
+            <div class="Categorias col-sm-4 col-md-3 mb-1 mb-sm-0 pt-4">
+                <div class="card">
+                    <img src="asset/img/categoria/escultura-cat.png" class="card-img-top" alt="categorias1">
+                    <div class="card-body">
+                        <a href="./esculturas.html" type="button" class="btn btn-outline-secondary">E S C U L T U R
+                            A</a>
+                    </div>
+                </div>
+            </div>
+            <div class="Categorias col-sm-4 col-md-3 mb-1 mb-sm-0 pt-4">
+                <div class="card">
+                    <img src="asset/img/categoria/orfebrería-cat.png" class="card-img-top" alt="categorias2">
+                    <div class="card-body">
+                        <a href="./orfebreria.html" type="button" class="btn btn-outline-secondary">O R F E B R E R I
+                            A</a>
+                    </div>
+                </div>
+            </div>
+            <div class="Categorias col-sm-4 col-md-3 mb-1 mb-sm-0 pt-4">
+                <div class="card">
+                    <img src="asset/img/categoria/pintura-cat.png" class="card-img-top" alt="pcategorias3">
+                    <div class="card-body">
+                        <a href="./pinturas.html" type="button" class="btn btn-outline-secondary">P I N T U R A S</a>
+                    </div>
+                </div>
+            </div>
+            <div class="Categorias col-sm-4 col-md-3 mb-1 mb-sm-0 pt-4">
+                <div class="card">
+                    <img src="asset/img/categoria/tejido-cat.png" class="card-img-top" alt="categorias4">
+                    <div class="card-body">
+                        <a href="./tejido.html" type="button" class="btn btn-outline-secondary">T E J I D O</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--seccion2-->
+    <section>
+        <div class="container d-flex pt-5 py-1">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-sm-12">
+                    <div>
+                        <img class="rounded imgseccion2" src="asset/img/categoria/escultura-cat.png" alt="">
+                    </div>
+                </div>
+                <div class="tituloseccion2 col-lg-6 col-sm-12 p-4">
+                    <h3 class="novedadh3">ESCULTURA</h3>
+                    <p>Desde el modelado manual de la arcilla se ha pasado posteriormente a la producción de
+                        losas y piezas,
+                        gracias a la introducción del torno, una de las primeras herramientas que permitió un proceso
+                        más preciso.
+                        De esta forma, los artefactos articulados se difundieron en el mundo oriental, gracias también a
+                        los
+                        cilindros de calcita, que permitieron decorar las losas con motivos repetidos.</p>
+                </div>
+            </div>
+    </section>
+
+    <!--seccion3-->
+    <section>
+        <div class="container d-flex pt-5 py-1">
+            <div class="row d-flex align-items-center">
+                <div class="tituloseccion2 col-lg-6 col-sm-12">
+                    <h3 class="novedadh3">PINTURA</h3>
+                    <p>Desde el modelado manual de la arcilla se ha pasado posteriormente a la producción de
+                        losas y piezas,
+                        gracias a la introducción del torno, una de las primeras herramientas que permitió un proceso
+                        más preciso.
+                        De esta forma, los artefactos articulados se difundieron en el mundo oriental, gracias también a
+                        los
+                        cilindros de calcita, que permitieron decorar las losas con motivos repetidos.</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 p-4">
+                    <div>
+                        <img class="rounded imgseccion2" src="asset/img/categoria/pintura-cat.png" alt="">
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+    <!--seccion4-->
+    <section>
+        <div class="container d-flex pt-5 py-1">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-sm-12 p-4">
+                    <div>
+                        <img class="rounded imgseccion2" src="asset/img/categoria/orfebrería-cat.png" alt="">
+                    </div>
+                </div>
+                <div class="tituloseccion2 col-lg-6 col-sm-12">
+                    <h3 class="novedadh3">ORFEBRERÍA</h3>
+                    <p>Desde el modelado manual de la arcilla se ha pasado posteriormente a la producción de
+                        losas y piezas,
+                        gracias a la introducción del torno, una de las primeras herramientas que permitió un proceso
+                        más preciso.
+                        De esta forma, los artefactos articulados se difundieron en el mundo oriental, gracias también a
+                        los
+                        cilindros de calcita, que permitieron decorar las losas con motivos repetidos.</p>
+                </div>
+            </div>
+    </section>
+
+    <!--seccion5-->
+    <section class="container text-center py-3">
+        <div class="tituloseccion2 col-lg-12 col-sm-12">
+            <h3 class="text-center">GALERÍA</h3>
+            <p class=" text-center">Hermosas creaciones de artistas locales, productos originales hechos artesanalmente
+            </p>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./asset/img/escultura/es-carrusel.png" class="d-block w-100" alt="esc">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./asset/img/orfebrería/or-carrusel.png" class="d-block w-100" alt="orc">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./asset/img/pintura/pin-carrusel.png" class="d-block w-100" alt="pinc">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./asset/img/tejido/te-carrusel.png" class="d-block w-100" alt="tec">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+</body>
+
+<!-- Footer -->
+
+<footer class="text-center">
+
+    <div class="container d-none d-sm-block">
+        <div class="row ">
+            <div class="col">
+                <a class="linkfooter" href="">Contacto</a>
+            </div>
+            <div class="col">
+                <a class="linkfooter" href="">Comunidad</a>
+            </div>
+            <div class="col">
+                <a class="navbar-brand logo" href="index.html">
+                    <img src="./asset/img/LOGO.png" alt="Logo" width="30" height="30" class="d-inline-block">
+                </a>
+            </div>
+            <div class="col">
+                <a class="linkfooter" href="">Ayuda</a>
+            </div>
+            <div class="col">
+                <a class="linkfooter" href="">Recursos</a>
+            </div>
+        </div>
+    </div>
+    <hr class="solid">
+
+    <!-- Grid container -->
+    <div class="container pt-4  col-lg-6 px-5">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <div class="row ">
+                <div class="col">
+                    <!-- Facebook -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <div class="col">
+                    <!-- Twitter -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="col">
+                    <!-- Google -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a>
+                </div>
+                <div class="col">
+
+                    <!-- Instagram -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="col">
+                    <!-- Linkedin -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="col">
+                    <!-- Github -->
+                    <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                        data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">GrupoCero.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+
+<!-- End of .container -->
+
+</html>
