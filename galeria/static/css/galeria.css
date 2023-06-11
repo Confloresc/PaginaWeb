@@ -1,0 +1,194 @@
+body {
+  margin: 0%;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 6vh;
+}
+h2 {
+  font-size: 4vh;
+}
+
+h4 {
+  font-size: 2vh;
+}
+
+p,
+.cargaobra {
+  font-size: 1, 5vmin;
+}
+
+#principal {
+  background-image: url("../img/texturafondo.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: transparent;
+}
+
+.imgseccion2 {
+  max-width: 100%;
+}
+
+.novedadh3 {
+  margin-bottom: 3%;
+  text-align: start;
+}
+.tituloseccion1,
+.tituloseccion2,
+.descripcion {
+  margin-bottom: 5%;
+  text-align: justify;
+}
+
+p {
+  font-weight: 300;
+}
+
+footer {
+  margin-top: 15%;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+.linkfooter {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.title-login {
+  width: 100%;
+  text-align: center;
+}
+
+.login {
+  margin-top: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+.btn-login {
+  background-color: gray;
+  border-color: gray;
+  margin-left: 45%;
+}
+
+.bodyContacto,
+.bodyProducto {
+  box-sizing: border-box;
+}
+
+.form-contact {
+  float: left;
+  padding: 1%;
+}
+.btn-contacto {
+  background-color: gray;
+  border-color: gray;
+  padding-right: 2%;
+  padding-left: 2%;
+}
+
+.form-contact-box1 {
+  width: 50%;
+}
+
+.form-contact-box2 {
+  width: 100%;
+}
+
+.container-producto-1 {
+  float: left;
+  width: 100%;
+  padding-left: 5%;
+  padding-top: 5%;
+  padding-right: 10%;
+  padding-bottom: 2%;
+}
+
+.sub-container-producto-1 {
+  float: left;
+  width: 40%;
+  padding: 5%;
+  padding-top: 1%;
+}
+
+.sub-container-producto-2 {
+  float: left;
+  width: 60%;
+  padding-left: 3%;
+  padding-top: 3%;
+}
+
+.title-producto {
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+
+.sub-container-img {
+  float: left;
+  width: 100%;
+}
+
+.sub-container-img-1 {
+  float: left;
+  width: 25%;
+  padding-left: 3%;
+  padding-top: 3%;
+}
+
+.sub-container-img-1:hover {
+  width: 25%;
+  padding-top: 0%;
+}
+
+.card {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+@media only screen and (max-width: 768px) {
+  #btn-effect:hover {
+    background-color: #777;
+  }
+  #btn-effect:active {
+    background-color: #333;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+
+  .sub-container-producto-1,
+  .sub-container-producto-2 {
+    width: 100%;
+  }
+}
+.loader {
+  display: none;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 2s linear infinite;
+  margin-left: 6px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
