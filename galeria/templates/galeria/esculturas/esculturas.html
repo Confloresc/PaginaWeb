@@ -23,7 +23,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="{% url 'index' %}">
-        <img src="{% static 'img/logo.png' %}" alt="Logo" width="30" height="30" class="d-inline-block">
+        <img src="{% static 'img/LOGO.png' %}" alt="Logo" width="30" height="30" class="d-inline-block">
         Grupo Cero
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -38,7 +38,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'pinturas' %}">Pintura</a></li>
-              <li><a class="dropdown-item" href="esculturas.html">Escultura</a></li>
+              <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
               <li><a class="dropdown-item" href="orfebreria.html">Orfebreria</a></li>
               <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
               <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
@@ -73,13 +73,14 @@
     </div>
   </nav>
 
+ 
 
-   <!-- TITULAR -->
+  <!-- TITULAR -->
 
-   <div class="container mt-5 text-center">
+  <div class="container mt-5 text-center">
     <div class="row">
-      <h1>Lucy Graham</h1>
-        <h4>Artista Pintora</h4>
+      <h1>Lorenza Gaete</h1>
+        <h4>Artista Escultora</h4>
       <div class="col-12">
         <div class="col-sm-12 col-lg-5">
         </div>
@@ -89,42 +90,41 @@
   </div>
 
 
-
 <!-- catalogo -->
 
-<div class="container pintura text-center">
-  <div class="row">
-    <div class="pintura col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/pintura/p1/p1 principal.png' %}" class="card-img-top" alt="pin1">
-        <div class="card-body">
-          <a href="{% url 'pintura1' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+  <div class="container Esculturas text-center">
+    <div class="row">
+      <div class="Esculturas col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/escultura/es1/es-1-1.png' %}" class="card-img-top" alt="es1">
+          <div class="card-body">
+            <a href="{% url 'escultura1' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="pintura col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/pintura/p2/p2 principal.png' %}" class="card-img-top" alt="pin2">
-        <div class="card-body">
-          <a href="{% url 'pintura2' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+      <div class="Esculturas col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/escultura/es2/es-2-1.png' %}" class="card-img-top" alt="es2">
+          <div class="card-body">
+            <a href="{% url 'escultura2' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="pintura col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/pintura/p3/p3 principal.png' %}" class="card-img-top" alt="pin3">
-        <div class="card-body">
-          <a href="{% url 'pintura3' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+      <div class="Esculturas col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/escultura/es3/es-3-1.png' %}" class="card-img-top" alt="es3">
+          <div class="card-body">
+            <a href="{% url 'escultura3' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="pintura col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/PROXIMAMENTE.png' %}" class="card-img-top" alt="PRO">
+      <div class="Esculturas col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/PROXIMAMENTE.png' %}" class="card-img-top" alt="PRO">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </body>
 
