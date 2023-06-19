@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, "galeria/index.html", {})
+
+def pinturas(request):
+    return render(request, "galeria/pinturas/pinturas.html", {})
