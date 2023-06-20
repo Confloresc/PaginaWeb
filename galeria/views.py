@@ -30,3 +30,17 @@ def escultura2(request):
 def escultura3(request):
     return render(request, "galeria/esculturas/escultura3.html", {})
 
+def orfebreria(request):
+    return render(request, "galeria/orfebreria/orfebreria.html", {})
+
+def anillos(request):
+    return render(request, "galeria/orfebreria/anillos.html", {})
+
+def aretes(request):
+    return render(request, "galeria/orfebreria/aretes.html", {})
+
+def collar(request):
+    return render(request, "galeria/orfebreria/collar.html", {})
+
+
+

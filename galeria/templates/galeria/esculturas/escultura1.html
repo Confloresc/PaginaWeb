@@ -22,8 +22,8 @@
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand logo" href="./index.html">
-        <img src="./asset/img/LOGO.png" alt="Logo" width="30" height="30" class="d-inline-block">
+      <a class="navbar-brand logo" href="{% url 'index' %}">
+        <img src="{% static 'img/LOGO.png' %}" alt="Logo" width="30" height="30" class="d-inline-block">
         Grupo Cero
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -37,8 +37,8 @@
               Categorias
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="pinturas.html">Pintura</a></li>
-              <li><a class="dropdown-item" href="esculturas.html">Escultura</a></li>
+              <li><a class="dropdown-item" href="{% url 'pinturas' %}">Pintura</a></li>
+              <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
               <li><a class="dropdown-item" href="orfebreria.html">Orfebreria</a></li>
               <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
               <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
@@ -66,8 +66,8 @@
             </div>
 
 
-          <a class="navbar-brand Carro" href="./index.html">
-            <img src="./asset/img/carrito.png" alt="Carro" width="35" height="35" class="d-inline-block">
+          <a class="navbar-brand Carro" href="{% url 'index' %}">
+            <img src="{% static 'img/carrito.pn' %}" alt="Carro" width="35" height="35" class="d-inline-block">
              
           </a>
         </nav>
@@ -83,11 +83,11 @@
   <div id="carouselExampleFade" class="carousel slide carousel-fade">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="asset/img/escultura/es1/es-1-1.png" class="d-block w-100" alt="...">
+        <img src="{% static 'img/escultura/es1/es-1-1.png' %}" class="d-block w-100" alt="...">
         
       </div>
       <div class="carousel-item">
-        <img src="asset/img/escultura/es1/es-1-2.png" class="d-block w-100" alt="...">
+        <img src="{% static 'img/escultura/es1/es-1-2.png' %}" class="d-block w-100" alt="...">
         
       </div>
      </div>
@@ -138,7 +138,7 @@
           </tr>              
         </tbody>
       </table>
-      <a href="./esculturas.html" type="button" class="btn btn-outline-secondary">VOLVER</a>
+      <a href="{% url 'esculturas' %}" type="button" class="btn btn-outline-secondary">VOLVER</a>
       <button id="btn-effect" type="button" class="btn btn-secondary">Agregar al Carro</button>  
 </div>
 
@@ -154,23 +154,23 @@
 
     <div class="sub-container-img">
         <div class="sub-container-img-1">
-          <a href="./pintura1.html">
-            <img src="asset/img/pintura/p1/p1 principal.png" class="img-fluid img-producto-1">
+          <a href="{% url 'pintura1' %}">
+            <img src="{% static 'img/pintura/p1/p1 principal.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
         <div class="sub-container-img-1">
           <a href="./tejido3.html">
-            <img src="asset/img/tejido/tejido 3/t3-principal.png" class="img-fluid img-producto-1">
+            <img src="{% static 'img/tejido/tejido 3/t3-principal.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
         <div class="sub-container-img-1">
           <a href="./collar.html">
-            <img src="asset/img/orfebrería/collar/collar1.png" class="img-fluid img-producto-1">
+            <img src="{% static 'img/orfebrería/collar/collar1.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
         <div class="sub-container-img-1">
           <a href="./aretes.html">
-            <img src="asset/img/orfebrería/aretes/a1.png" class="img-fluid img-producto-1">
+            <img src="{% static 'img/orfebrería/aretes/a1.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
 
@@ -193,8 +193,8 @@
         <a class="linkfooter" href="">Comunidad</a>
       </div>
       <div class="col">
-        <a class="navbar-brand logo" href="index.html">
-          <img src="./asset/img/LOGO.png" alt="Logo" width="30" height="30" class="d-inline-block">
+        <a class="navbar-brand logo" href="{% url 'index' %}">
+          <img src="{% static 'img/LOGO.png' %}" alt="Logo" width="30" height="30" class="d-inline-block">
         </a>
       </div>
       <div class="col">
