@@ -39,7 +39,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'pinturas' %}">Pintura</a></li>
               <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
-              <li><a class="dropdown-item" href="orfebreria.html">Orfebreria</a></li>
+              <li><a class="dropdown-item" href="{% url 'orfebreria' %}">Orfebreria</a></li>
               <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
               <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
             </ul>
@@ -74,21 +74,17 @@
   </nav>
 
  
- 
 <div class="container-producto-1">
   <div class="sub-container-producto-1">
-
   <!--Carrusel-->
 
   <div id="carouselExampleFade" class="carousel slide carousel-fade">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="{% static 'img/escultura/es2/es-2-1.png' %}" class="d-block w-100" alt="...">
-        
+        <img src="{% static 'img/orfebrería/collar/collar1.png' %}" class="d-block w-100" alt="...">        
       </div>
       <div class="carousel-item">
-        <img src="{% static 'img/escultura/es2/es-2-2.png' %}" class="d-block w-100" alt="...">
-        
+        <img src="{% static 'img/orfebrería/collar/collar2.png' %}" class="d-block w-100" alt="...">        
       </div>
      </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -107,7 +103,7 @@
 
   <div class="sub-container-producto-2">
     <table class="table">
-      <h4> BISOGNO </h4>
+      <h4> JOYAS DE LA REINA PARMA </h4>
         <thead>
           <tr>
             <th scope="col" colspan="2">Detalle del Producto</th>
@@ -117,7 +113,7 @@
         <tbody>
           <tr>
             <th scope="row">Autor:</th>
-            <td>Lorenza Gaete</td>                
+            <td>Javiera Reyes</td>                
           </tr>
           <tr>
             <th scope="row">Año:</th>
@@ -125,20 +121,21 @@
           </tr>
           <tr>
             <th scope="row">Categoria:</th>
-            <td>Escultura</td>                
+            <td>Collar</td>                
           </tr>
           <tr>
             <th scope="row">Valor:</th>
-            <td>$115.000</td>
+            <td>$500.000</td>
           </tr>
           <tr>
             <th scope="row">Descripción:</th>
-            <td>Set de cuatro piezas de arcilla que juegan con las texturas y las sombras, embelleceran cualquier espacio en el que esten.
+            <td>Inspirada en María Luisa de Parma, Reina de España.
+              Diamante de baja calidad con circones de acompañamiendo, bañado en oro.
             </td>
           </tr>              
         </tbody>
       </table>
-      <a href="{% url 'esculturas' %}" type="button" class="btn btn-outline-secondary">VOLVER</a>
+      <a href="{% url 'orfebreria' %}" type="button" class="btn btn-outline-secondary">VOLVER</a>
       <button id="btn-effect" type="submit" class="btn btn-secondary">Agregar al Carro</button>  
 </div>
 
@@ -147,30 +144,30 @@
 
 <div class="container-producto-1">
 
-<div class="title-producto">
-    <h3>OTRAS OBRAS</h3>
+    <div class="title-producto">
+        <h3>OTRAS OBRAS</h3>
 
-</div>
+    </div>
 
     <div class="sub-container-img">
         <div class="sub-container-img-1">
-          <a href="{% url 'escultura3' %}">
-            <img src="{% static 'img/escultura/es3/es-3-1.png' %}" class="img-fluid img-producto-1">
+          <a href="{% url 'pintura2' %}">
+            <img src="{% static 'img/pintura/p2/p2 principal.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
         <div class="sub-container-img-1">
-          <a href="./tejido3.html">
-            <img src="{% static 'img/tejido/tejido 3/t3-principal.png' %}" class="img-fluid img-producto-1">
-          </a>
-        </div>
-        <div class="sub-container-img-1">
-          <a href="./anillos.html">
+          <a href="{% url 'anillos' %}">
             <img src="{% static 'img/orfebrería/anillos/anillo1.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
         <div class="sub-container-img-1">
-          <a href="{% url 'pintura3' %}">
-            <img src="{% static 'img/pintura/p3/p3 principal.png' %}" class="img-fluid img-producto-1">
+          <a href="./tejido2.html">
+            <img src="{% static 'img/tejido/tejido 2/t2-principal.png' %}" class="img-fluid img-producto-1">
+          </a>
+        </div>
+        <div class="sub-container-img-1">
+          <a href="./tejido3.html">
+            <img src="{% static 'img/tejido/tejido 3/t3-1.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
 
