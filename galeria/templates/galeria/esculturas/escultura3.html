@@ -39,7 +39,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'index' %}">Pintura</a></li>
               <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
-              <li><a class="dropdown-item" href="orfebreria.html">Orfebreria</a></li>
+              <li><a class="dropdown-item" href="{% url 'orfebreria' %}">Orfebreria</a></li>
               <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
               <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
             </ul>
@@ -59,7 +59,7 @@
         </form>
         <nav class="navbar bg-body-tertiary">
           <div>
-            <a href="login.html"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
+            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
             <a href="registro.html"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
 
           </div>
@@ -157,7 +157,7 @@
           </a>
         </div>
         <div class="sub-container-img-1">
-          <a href="./collar.html">
+          <a href="{% url 'collar' %}">
             <img src="{% static 'img/orfebrería/collar/collar2.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
@@ -167,7 +167,7 @@
           </a>
         </div>
         <div class="sub-container-img-1">
-          <a href="./aretes.html">
+          <a href="{% url 'aretes' %}">
             <img src="{% static 'img/orfebrería/aretes/a2.png' %}" class="img-fluid img-producto-1">
           </a>
         </div>
@@ -267,5 +267,5 @@
   src="https://code.jquery.com/jquery-3.7.0.min.js"
   integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
   crossorigin="anonymous"></script>
-  <script src="asset/JavaScript/btn.js" type="text/JavaScript"></script>
+  <script src="{% static 'JavaScript/btn.js' %}" type="text/JavaScript"></script>
 </html>
