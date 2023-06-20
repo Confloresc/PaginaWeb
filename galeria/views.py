@@ -9,14 +9,16 @@ def index(request):
 def login(request):
      if request.method == 'POST':
         form = UsuarioForm(request.POST)
-        if form.is_valid():
-            form.save()
+        
      else:
         form = UsuarioForm()
      return render(request, "galeria/login.html", {'form': form})
 
 def loginForm(request):
     return render(request, "galeria/index.html", {})
+
+def categoria(request):
+    return render(request, "galeria/categoria.html", {})
 
 def pinturas(request):
     return render(request, "galeria/pinturas/pinturas.html", {})
