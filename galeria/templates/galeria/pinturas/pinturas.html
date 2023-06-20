@@ -38,10 +38,10 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'pinturas' %}">Pintura</a></li>
-              <li><a class="dropdown-item" href="esculturas.html">Escultura</a></li>
-              <li><a class="dropdown-item" href="orfebreria.html">Orfebreria</a></li>
+              <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
+              <li><a class="dropdown-item" href="{% url 'orfebreria' %}">Orfebreria</a></li>
               <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
-              <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
+              <li><a class="dropdown-item" href="{% url 'categoria' %}">Ver Todo</a></li>
             </ul>
           </li>
           <li class="nav-item">

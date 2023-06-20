@@ -45,7 +45,7 @@
                             <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
                             <li><a class="dropdown-item" href="{% url 'orfebreria' %}">Orfebreria</a></li>
                             <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
-                            <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
+                            <li><a class="dropdown-item" href="{% url 'categoria' %}">Ver Todo</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -297,7 +297,7 @@
                 <div class="card">
                     <img src="{% static 'img/categoria/orfebrería-cat.png' %}" class="card-img-top" alt="categorias2">
                     <div class="card-body">
-                        <a href="orfebreria" type="button" class="btn btn-outline-secondary">O R F E B R E R I
+                        <a href="{% url 'orfebreria' %}" type="button" class="btn btn-outline-secondary">O R F E B R E R I
                             A</a>
                     </div>
                 </div>
