@@ -13,7 +13,7 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/dc663d69b4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/galeria.css' %}">
-    <script src="asset/JavaScript/jquery-3.7.0.js"></script>
+    <script src="{% static 'JavaScript/jquery-3.7.0.js' %}"></script>
 
 
 </head>
@@ -43,7 +43,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'pinturas' %}">Pintura</a></li>
                             <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
-                            <li><a class="dropdown-item" href="orfebreria">Orfebreria</a></li>
+                            <li><a class="dropdown-item" href="{% url 'orfebreria' %}">Orfebreria</a></li>
                             <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
                             <li><a class="dropdown-item" href="categoria.html">Ver Todo</a></li>
                         </ul>
@@ -63,7 +63,7 @@
                 </form>
                 <nav class="navbar bg-body-tertiary">
                     <div>
-                        <a href="login.html"><button class="btn btn-outline-secondary" type="submit">Iniciar
+                        <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
                                 Sesion</button></a>
                         <a href="registro.html"><button class=" btn btn-secondary ml-2"
                                 type="submit">Registrarse</button></a>

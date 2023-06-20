@@ -1,9 +1,21 @@
 from django.shortcuts import render
-
+from .models import UsuarioForm
 # Create your views here.
 
 
 def index(request):
+    return render(request, "galeria/index.html", {})
+
+def login(request):
+     if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+     else:
+        form = UsuarioForm()
+     return render(request, "galeria/login.html", {'form': form})
+
+def loginForm(request):
     return render(request, "galeria/index.html", {})
 
 def pinturas(request):

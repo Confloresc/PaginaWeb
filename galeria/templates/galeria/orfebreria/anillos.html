@@ -59,7 +59,7 @@
         </form>
         <nav class="navbar bg-body-tertiary">
           <div>
-            <a href="login.html"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
+            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
             <a href="registro.html"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
 
           </div>
@@ -268,5 +268,5 @@
   src="https://code.jquery.com/jquery-3.7.0.min.js"
   integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
   crossorigin="anonymous"></script>
-  <script src="asset/JavaScript/btn.js" type="text/JavaScript"></script>
+  <script src="{% static 'JavaScript/btn.js' %}" type="text/JavaScript"></script>
 </html>
