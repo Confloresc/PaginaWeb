@@ -79,5 +79,15 @@ def perfil(request):
 def artistas(request):
     return render(request, "galeria/artistas.html", {})
 
+
 def registro(request):
-    return render(request, "galeria/registro.html", {})
+    if request.method == "POST":
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()  # Guarda el nuevo usuario en la base de datos
+            return render(request, 'galeria/perfil.html')
+    else:
+        form = UsuarioForm()
+
+    context = {"form": form}
+    return render(request, "galeria/registro.html", context)

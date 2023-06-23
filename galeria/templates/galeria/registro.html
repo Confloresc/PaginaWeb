@@ -77,52 +77,49 @@
   <div class="title-login container mt-5  ">
     <h3>Registro</h3>
   </div>
+
   <!--Formulario de registro-->
+
   <div class="login bg-light rounded shadow-sm">
     <form class="needs-validation" novalidate>
       <div class="container">
         <p>Ingrese todos los datos en el siguiente formulario para registro</p>
-        <div class="row mb-3 mt-3">
-          <div class="col">
-            <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu Nombre" name="nombre" required>
-            <div class="valid-feedback">
+
+        <form action="{% url 'registro' %}" method="POST">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Ingresa tu nombre" name="nombre" required>
+          </div>
+          
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Ingresa tu apellido" name="apellido" required>
+          </div>
+          
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Correo" name="email">
+          </div>
+          
+          <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Contraseña" name="clave" required>
+          </div>
+          
+          <button type="submit" class="btn btn-secondary">Registrar</button>
+
+          {% if form.errors %}
+            <div class="alert alert-danger mt-3">
+              <ul>
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
             </div>
-            <div class="invalid-feedback">Por favor ingresar un nombre valido</div>
-          </div>
-          <div class="col">
-            <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu Apellido" name="Apellido"
-              required>
-            <div class="valid-feedback"></div>
-            <div class="invalid-feedback">Por favor ingresar un apellido valido</div>
-          </div>
-        </div>
+          {% endif %}
+        </form>
 
-
-        <div class="mb-3">
-          <input type="email" class="form-control" id="email" placeholder="Ingresa tu Correo" name="correo" required>
-          <div class="valid-feedback"></div>
-          <div class="invalid-feedback">Por favor ingresar un correo electrónico válido
-          </div>
-        </div>
-
-
-        <div class="mb-3">
-          <input maxlength="8" minlength="8" type="password" class="form-control" id="pwd"
-            placeholder="Ingresa tu Contraseña" name="pswd" required pattern="[a-zA-Z]+[0-9]+">
-          <div class="valid-feedback"></div>
-          <div class="invalid-feedback">Contraseña debe tener 8 caracteres, mayuscula, minuscula y números.</div>
-        </div>
-
-        <div class="form-check mb-3">
-          <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
-          <label class="form-check-label" for="myCheck">Estoy de acuerdo con los terminos y condiciones</label>
-          <div class="valid-feedback">Completo</div>
-          <div class="invalid-feedback">Haz click para continuar</div>
-        </div>
-
-
-        <button type="submit" class="btn btn-secondary">Registrar</button>
-    </form>
+      
   </div>
   </div>
   <script src="asset/JavaScript/script.js"></script>
