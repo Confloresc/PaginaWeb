@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import UsuarioForm
-# Create your views here.
+
 
 
 def index(request):
@@ -13,6 +13,8 @@ def login(request):
      else:
         form = UsuarioForm()
      return render(request, "galeria/login.html", {'form': form})
+
+
 
 def loginForm(request):
     return render(request, "galeria/index.html", {})
@@ -55,6 +57,27 @@ def aretes(request):
 
 def collar(request):
     return render(request, "galeria/orfebreria/collar.html", {})
+    
+def tejido(request):
+    return render(request, "galeria/tejido/tejido.html", {})
 
+def tejido1(request):
+    return render(request, "galeria/tejido/tejido1.html", {})
 
+def tejido2(request):
+    return render(request, "galeria/tejido/tejido2.html", {})    
+    
+def tejido3(request):
+    return render(request, "galeria/tejido/tejido3.html", {})
 
+def contacto(request):
+    return render(request, "galeria/contacto.html", {})
+
+def perfil(request):
+    return render(request, "galeria/perfil.html", {})
+
+def artistas(request):
+    return render(request, "galeria/artistas.html", {})
+
+def registro(request):
+    return render(request, "galeria/registro.html", {})

@@ -20,4 +20,13 @@ urlpatterns = [
     path("anillos/", views.anillos, name="anillos"),
     path("aretes/", views.aretes, name="aretes"),
     path("collar/", views.collar, name="collar"),
+    path("tejido/", views.tejido, name="tejido"),
+    path("tejido1/", views.tejido1, name="tejido1"),
+    path("tejido2/", views.tejido2, name="tejido2"),
+    path("tejido3/", views.tejido3, name="tejido3"),
+    path("contacto/", views.contacto, name="contacto"),  
+    path("perfil/", views.perfil, name="perfil"), 
+    path("artistas/", views.artistas, name="artistas"), 
+    path("registro/", views.registro, name="registro"), 
+ 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

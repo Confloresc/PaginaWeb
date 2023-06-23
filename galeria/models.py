@@ -23,3 +23,5 @@ class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['correo', 'clave']    
+
+

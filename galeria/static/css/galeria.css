@@ -1,6 +1,7 @@
 body {
   margin: 0%;
   font-family: "Montserrat", sans-serif;
+  zoom: 0.7;
 }
 
 h1 {
@@ -48,6 +49,7 @@ p {
 
 footer {
   margin-top: 15%;
+
 }
 
 hr.solid {
@@ -155,6 +157,14 @@ hr.solid {
   background-color: transparent;
   border-color: transparent;
 }
+
+.fixed-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 @media only screen and (max-width: 768px) {
   #btn-effect:hover {
