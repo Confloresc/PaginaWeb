@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import UsuarioForm
+from django.shortcuts import render, redirect
+from .models import UsuarioForm, FormRegistro
+
 
 
 
@@ -14,6 +15,20 @@ def login(request):
         form = UsuarioForm()
      return render(request, "galeria/login.html", {'form': form})
 
+def registro(request):
+    form = FormRegistro()
+    if request.method == 'POST':
+        print("error 1 ",form.errors)
+        form = FormRegistro(request.POST)
+        if form.is_valid():
+            form.save()
+            print("error 2 ",form.errors)
+            return redirect('index')
+    else:
+        form = FormRegistro()
+        print("error 3 ",form.errors)
+    print("error 4 ",form.errors)
+    return render(request, "galeria/registro.html", {"form": form})
 
 
 def loginForm(request):
@@ -80,14 +95,3 @@ def artistas(request):
     return render(request, "galeria/artistas.html", {})
 
 
-def registro(request):
-    if request.method == "POST":
-        form = UsuarioForm(request.POST)
-        if form.is_valid():
-            usuario = form.save()  # Guarda el nuevo usuario en la base de datos
-            return render(request, 'galeria/perfil.html')
-    else:
-        form = UsuarioForm()
-
-    context = {"form": form}
-    return render(request, "galeria/registro.html", context)

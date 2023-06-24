@@ -81,27 +81,26 @@
   <!--Formulario de registro-->
 
   <div class="login bg-light rounded shadow-sm">
-    <form class="needs-validation" novalidate>
       <div class="container">
         <p>Ingrese todos los datos en el siguiente formulario para registro</p>
 
-        <form action="{% url 'registro' %}" method="POST">
+        <form  method="post">
           {% csrf_token %}
           
           <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Ingresa tu nombre" name="nombre" required>
+            <input type="text" class="form-control" id="{{ form.nombre.id_for_label }}" placeholder="Ingresa tu Nombre" name="{{ form.nombre.html_name }}" required>
           </div>
           
           <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Ingresa tu apellido" name="apellido" required>
+            <input type="text" class="form-control" id="{{ form.apellido.id_for_label }}" placeholder="Ingresa tu apellido" name="{{ form.apellido.html_name }}" required>
           </div>
           
           <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Correo" name="email">
+            <input type="email" class="form-control" id="{{ form.correo.id_for_label }}" placeholder="Correo" name="{{ form.correo.html_name }}">
           </div>
           
           <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Contraseña" name="clave" required>
+            <input type="password" class="form-control" placeholder="Contraseña" id="{{ form.clave.id_for_label }}" name="{{ form.clave.html_name }}" required>
           </div>
           
           <button type="submit" class="btn btn-secondary">Registrar</button>
@@ -122,7 +121,7 @@
       
   </div>
   </div>
-  <script src="asset/JavaScript/script.js"></script>
+
 
 </body>
 

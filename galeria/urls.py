@@ -28,5 +28,7 @@ urlpatterns = [
     path("perfil/", views.perfil, name="perfil"), 
     path("artistas/", views.artistas, name="artistas"), 
     path("registro/", views.registro, name="registro"), 
+    
  
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
