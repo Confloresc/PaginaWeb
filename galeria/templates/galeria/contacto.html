@@ -93,42 +93,39 @@
           <div class="container">
                 <div class="row mb-3 mt-3">
                   <div class="col">
-                    <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu Nombre" name="nombre" required>
-                    <div class="valid-feedback">
-                      ok
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="{{ form.nombre.id_for_label }}" placeholder="Ingresa tu Nombre" name="{{ form.nombre.html_name }}" required>
                     </div>
-                    <div class="invalid-feedback">
-                      Por favor ingresar el nombre
+                    
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="{{ form.apellido.id_for_label }}" placeholder="Ingresa tu apellido" name="{{ form.apellido.html_name }}" required>
                     </div>
-                  </div>
-
-                  <div class="col">
-                    <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu Apellido" name="Apellido" required>
-                    <div class="valid-feedback">
-                      ok
+                    
+                    <div class="mb-3">
+                      <input type="email" class="form-control" id="{{ form.correo.id_for_label }}" placeholder="Correo" name="{{ form.correo.html_name }}">
                     </div>
-                    <div class="invalid-feedback">
-                      Por favor ingresar el apellido
+  
+                    <div class="form-contact-box2 form-contact">
+                      <p>Consulta:</p>
+                       <textarea id="w3review" name="w3review" class="form-contact-box2"></textarea>
                     </div>
                   </div>
                 </div>
 
-                                    
-                                    
-                  <div class="mb-3">
-                    <input type="email" class="form-control validarEmail" id="{{ form.correo.id_for_label }}" placeholder="Correo" aria-describedby="emailHelp" name="{{ form.correo.html_name }}">
-                    <p id="resultApi">
-                    </p>
-                  </div>
-
-                  <div class="form-contact-box2 form-contact">
-                    <p>Consulta:</p>
-                     <textarea id="w3review" name="w3review" class="form-contact-box2"></textarea>
-                  </div>
-
                 <button type="submit" class="btn btn-secondary">Enviar</button>
-          </div>    
-        </form>
+                {% if form.errors %}
+                <div class="alert alert-danger mt-3">
+                  <ul>
+                    {% for field in form %}
+                      {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </form>
+          </div>
       </div>
         
 
