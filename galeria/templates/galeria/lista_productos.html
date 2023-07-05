@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Lista de productos</title>
 </head>
+
 <body>
     <h1>Lista de productos</h1>
     <table>
@@ -29,7 +31,7 @@
                 <td>{{ producto.autor.nombre }}</td>
                 <td>
                     {% for tipo in producto.tipos_de_obra.all %}
-                        {{ tipo.tipo }}
+                    {{ tipo.tipo }}
                     {% endfor %}
                 </td>
                 <td>
@@ -42,4 +44,5 @@
     </table>
     <a href="{% url 'crear_producto' %}">Crear nuevo producto</a>
 </body>
+
 </html>

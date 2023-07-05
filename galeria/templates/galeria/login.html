@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,14 +59,16 @@
         </form>
         <nav class="navbar bg-body-tertiary">
           <div>
-            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
+                Sesion</button></a>
+            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2"
+                type="submit">Registrarse</button></a>
 
           </div>
 
           <a class="navbar-brand Carro" href="{% url 'index' %}">
             <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-             
+
           </a>
         </nav>
       </div>
@@ -73,7 +76,7 @@
   </nav>
 
 
- 
+
 
   <div class="title-login container mt-5  ">
     <h3>Log-In</h3>
@@ -81,25 +84,27 @@
   </div>
 
   <!--Login-->
-  
+
   <div class="login bg-light rounded shadow-sm">
     <form action="{% url 'loginForm' %}" method="post">
 
       {% csrf_token %}
-   
-      
+
+
       <div class="mb-3">
         <input type="email" class="form-control validarEmail" id="{{ form.correo.id_for_label }}" placeholder="Correo"
           aria-describedby="emailHelp" name="{{ form.correo.html_name }}">
-          <p id="resultApi"></p>
+        <p id="resultApi"></p>
       </div>
 
       <div class="mb-3">
-        <input maxlength="8" minlength="8" type="password" class="form-control" id="{{ form.clave.id_for_label }}" placeholder="Ingresa tu Contraseña, 8 caracteres mayusculas, minuscula y números" name="{{ form.clave.html_name }}" required pattern="[a-zA-Z]+[0-9]+">
+        <input maxlength="8" minlength="8" type="password" class="form-control" id="{{ form.clave.id_for_label }}"
+          placeholder="Ingresa tu Contraseña, 8 caracteres mayusculas, minuscula y números"
+          name="{{ form.clave.html_name }}" required pattern="[a-zA-Z]+[0-9]+">
       </div>
-       
+
       <button class="btn btn-secondary" type="submit">Log In</button>
-      </form>
+    </form>
   </div>
 </body>
 
@@ -120,10 +125,11 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
+          <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block"
+            style="margin-top: -10px;">
         </a>
-    </div>
-    
+      </div>
+
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>
@@ -133,7 +139,7 @@
     </div>
   </div>
   <hr class="solid">
-  
+
   <!-- Grid container -->
   <div class="container pt-4  col-lg-6 px-5">
     <!-- Section: Social media -->

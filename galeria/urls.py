@@ -2,12 +2,18 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from django.contrib.auth.decorators import user_passes_test
+
+
+def es_admin(user):
+    return user.is_authenticated and user.is_superuser
+
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("login/", views.login, name="login"),  
-    path("loginForm/", views.loginForm, name="loginForm"), 
-    path("categoria/", views.categoria, name="categoria"), 
+    path("login/", views.login, name="login"),
+    path("loginForm/", views.loginForm, name="loginForm"),
+    path("categoria/", views.categoria, name="categoria"),
     path("pinturas/", views.pinturas, name="pinturas"),
     path("pintura1/", views.pintura1, name="pintura1"),
     path("pintura2/", views.pintura2, name="pintura2"),
@@ -24,18 +30,26 @@ urlpatterns = [
     path("tejido1/", views.tejido1, name="tejido1"),
     path("tejido2/", views.tejido2, name="tejido2"),
     path("tejido3/", views.tejido3, name="tejido3"),
-    path("contacto/", views.contacto, name="contacto"),  
-    path("perfil/", views.perfil, name="perfil"), 
-    path("artistas/", views.artistas, name="artistas"), 
-    path("registro/", views.registro, name="registro"), 
-    path('productos/', views.lista_productos, name='lista_productos'),
-    path('productos/crear/', views.crear_producto, name='crear_producto'),
-    path('productos/editar/<int:producto_id>/', views.editar_producto, name='editar_producto'),
-    path('productos/eliminar/<int:producto_id>/', views.eliminar_producto, name='eliminar_producto'),
- 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+    path("contacto/", views.contacto, name="contacto"),
+    path("perfil/", views.perfil, name="perfil"),
+    path("artistas/", views.artistas, name="artistas"),
+    path("registro/", views.registro, name="registro"),
+    path("productos/", views.lista_productos, name="lista_productos"),
+    path(
+        "productos/crear/",
+        user_passes_test(es_admin)(views.crear_producto),
+        name="crear_producto",
+    ),
+    path(
+        "productos/editar/<int:producto_id>/",
+        user_passes_test(es_admin)(views.editar_producto),
+        name="editar_producto",
+    ),
+    path(
+        "productos/eliminar/<int:producto_id>/",
+        user_passes_test(es_admin)(views.eliminar_producto),
+        name="eliminar_producto",
+    ),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-  
-
