@@ -23,8 +23,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="{% url 'index' %}">
-        <img src="{% static 'img/LOGO.png' %}" alt="Logo" width="30" height="30" class="d-inline-block">
-        Grupo Cero
+        <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,18 +39,18 @@
               <li><a class="dropdown-item" href="{% url 'pinturas' %}">Pintura</a></li>
               <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
               <li><a class="dropdown-item" href="{% url 'orfebreria' %}">Orfebreria</a></li>
-              <li><a class="dropdown-item" href="tejido.html">Tejido</a></li>
+              <li><a class="dropdown-item" href="{% url 'tejido' %}">Tejido</a></li>
               <li><a class="dropdown-item" href="{% url 'categoria' %}">Ver Todo</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="artistas.html">Artistas</a>
+            <a class="nav-link" href="{% url 'artistas' %}">Artistas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contacto.html">Contacto</a>
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="perfil.html">Perfil</a>
+            <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -60,7 +59,7 @@
         <nav class="navbar bg-body-tertiary">
           <div>
             <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="registro.html"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
 
           </div>
 
@@ -73,7 +72,6 @@
     </div>
   </nav>
 
- 
 
   <!-- TITULAR -->
 
@@ -142,9 +140,10 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-          <img src="{% static 'img/LOGO.png' %}" alt="Logo" width="30" height="30" class="d-inline-block">
+            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
         </a>
-      </div>
+    </div>
+    
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>

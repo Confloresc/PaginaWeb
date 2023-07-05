@@ -20,4 +20,22 @@ urlpatterns = [
     path("anillos/", views.anillos, name="anillos"),
     path("aretes/", views.aretes, name="aretes"),
     path("collar/", views.collar, name="collar"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("tejido/", views.tejido, name="tejido"),
+    path("tejido1/", views.tejido1, name="tejido1"),
+    path("tejido2/", views.tejido2, name="tejido2"),
+    path("tejido3/", views.tejido3, name="tejido3"),
+    path("contacto/", views.contacto, name="contacto"),  
+    path("perfil/", views.perfil, name="perfil"), 
+    path("artistas/", views.artistas, name="artistas"), 
+    path("registro/", views.registro, name="registro"), 
+    path('productos/', views.lista_productos, name='lista_productos'),
+    path('productos/crear/', views.crear_producto, name='crear_producto'),
+    path('productos/editar/<int:producto_id>/', views.editar_producto, name='editar_producto'),
+    path('productos/eliminar/<int:producto_id>/', views.eliminar_producto, name='eliminar_producto'),
+ 
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+  
+
