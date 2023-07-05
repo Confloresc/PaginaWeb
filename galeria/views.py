@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import UsuarioForm, FormRegistro
+from .models import UsuarioForm, FormRegistro, Producto, Imagen
+from .forms import ProductoForm, ImagenForm
 
 
 
@@ -94,4 +95,44 @@ def perfil(request):
 def artistas(request):
     return render(request, "galeria/artistas.html", {})
 
+
+
+def lista_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'galeria/lista_productos.html', {'productos': productos})
+
+def crear_producto(request):
+    if request.method == 'POST':
+        form = ProductoForm(request.POST)
+        if form.is_valid():
+            producto = form.save()
+            imagenes = request.FILES.getlist('imagenes')
+            for imagen in imagenes:
+                Imagen.objects.create(producto=producto, imagen=imagen)
+            return redirect('lista_productos')
+    else:
+        form = ProductoForm()
+    return render(request, 'galeria/crear_producto.html', {'form': form})
+
+def editar_producto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, instance=producto)
+        if form.is_valid():
+            producto = form.save()
+            imagenes = request.FILES.getlist('imagenes')
+            Imagen.objects.filter(producto=producto).delete()
+            for imagen in imagenes:
+                Imagen.objects.create(producto=producto, imagen=imagen)
+            return redirect('lista_productos')
+    else:
+        form = ProductoForm(instance=producto)
+    return render(request, 'galeria/editar_producto.html', {'form': form, 'producto': producto})
+
+def eliminar_producto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    if request.method == 'POST':
+        producto.delete()
+        return redirect('lista_productos')
+    return render(request, 'galeria/eliminar_producto.html', {'producto': producto})
 

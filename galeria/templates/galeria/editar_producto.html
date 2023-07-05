@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar producto</title>
+</head>
+<body>
+    <h1>Editar producto</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="file" name="imagenes" accept="image/*" multiple>
+        <button type="submit">Guardar cambios</button>
+    </form>
+</body>
+</html>
