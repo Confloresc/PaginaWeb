@@ -43,10 +43,20 @@
                         <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                     </li>
                     {% if user.is_authenticated %}
+                    {% if user.email == 'admin@gmail.com' %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_productos' %}">Obras Publicadas</a>
+                    </li>
                     {% endif %}
+                    {% endif %}
+
                 </ul>
                 <div class="d-flex align-items-center">
                     <p class="mb-0 me-3">

@@ -1,15 +1,13 @@
-from audioop import reverse
-from imaplib import _Authenticator
-from django.contrib.auth.models import User, Group
-from django.shortcuts import render, redirect
-from .models import UsuarioForm, FormRegistro, Producto, Imagen, Usuario2
+import time
+from django.urls import reverse
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import UsuarioForm, FormRegistro, Producto, Imagen, Usuario2, User
 from .forms import ProductoForm, ImagenForm
 from django.contrib.auth import login as auth_login, authenticate, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 
 
 global user
@@ -42,16 +40,20 @@ def loginForm(request):
         # Inicializar las variables de usuario
         usuario_auth = None
         usuario_personalizado = None
-
+        print(correo)
         # Buscar un usuario en ambas tablas
         try:
+            print("0")
             usuario_auth = User.objects.get(email=correo)
             usuario_personalizado = Usuario2.objects.get(correo=correo)
+            print(usuario_personalizado)
+            print(usuario_personalizado)
         except User.DoesNotExist:
+            print("1")
             usuario_auth = None
         except Usuario2.DoesNotExist:
             usuario_personalizado = None
-
+        print("2")
         # Autenticar al usuario según la tabla correspondiente
         if usuario_auth and usuario_auth.check_password(clave):
             # Usuario encontrado en la tabla de usuarios autenticados (auth_user)
@@ -61,6 +63,7 @@ def loginForm(request):
                 auth_login(request, user)
                 return redirect("index")
         elif usuario_personalizado is not None and usuario_personalizado.clave == clave:
+            print("3")
             # Usuario encontrado en la tabla personalizada (Usuario2)
             # Autenticar al usuario y realizar el inicio de sesión
             user = Usuario2.objects.get(correo=correo)
@@ -181,7 +184,13 @@ def perfil_administrador(request):
 
 @login_required(login_url="login")
 def lista_productos(request):
-    productos = Producto.objects.all()
+    if request.user.email == "admin@gmail.com":
+        # Si el usuario es el superusuario "admin@gmail.com", mostrar todos los productos
+        productos = Producto.objects.all()
+    else:
+        # Si no es el superusuario, mostrar solo los productos aprobados
+        productos = Producto.objects.filter(aprobado=True)
+
     return render(request, "galeria/lista_productos.html", {"productos": productos})
 
 
@@ -204,7 +213,15 @@ def crear_producto(request):
             for imagen in imagenes:
                 Imagen.objects.create(producto=producto, imagen=imagen)
 
-            return redirect("productos")
+            mensaje = "Producto creado, a espera de aprobación"
+            if request.user.email == "admin@gmail.com":
+                mensaje = "Producto creado con éxito"
+
+            return render(
+                request,
+                "galeria/crear_producto.html",
+                {"form": form, "mensaje": mensaje},
+            )
     else:
         form = ProductoForm()
 
@@ -222,7 +239,7 @@ def editar_producto(request, producto_id):
             Imagen.objects.filter(producto=producto).delete()
             for imagen in imagenes:
                 Imagen.objects.create(producto=producto, imagen=imagen)
-            return redirect("productos")
+            return redirect(reverse("lista_productos"))  # Utilizamos reverse aquí
     else:
         form = ProductoForm(instance=producto)
     return render(
@@ -235,10 +252,22 @@ def eliminar_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     if request.method == "POST":
         producto.delete()
-        return redirect("productos")
+        return redirect("lista_productos")
     return render(request, "galeria/eliminar_producto.html", {"producto": producto})
 
 
 def logout_view(request):
     logout(request)
     return redirect("index")
+
+
+@login_required(login_url="login")
+def aprobar_producto(request, producto_id):
+    if request.user.email == "admin@gmail.com":
+        producto = get_object_or_404(Producto, id=producto_id)
+        producto.aprobado = True
+        producto.save()
+        return redirect("lista_productos")
+    else:
+        error_message = "No tienes permiso para aprobar productos."
+        return render(request, "galeria/error.html", {"error_message": error_message})

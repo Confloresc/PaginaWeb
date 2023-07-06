@@ -53,6 +53,9 @@ class Producto(models.Model):
     valor = models.DecimalField(max_digits=8, decimal_places=2).default = 999999
     descripcion = models.TextField(default="escribe una descripcion")
     tipos_de_obra = models.ManyToManyField(TiposDeObra)
+    aprobado = models.BooleanField(
+        default=False
+    )  # Campo para indicar si el producto está aprobado
 
     def __str__(self):
         return self.titulo

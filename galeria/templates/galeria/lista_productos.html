@@ -90,7 +90,7 @@
 
 
   <div class="title-login container mt-5">
-    <h1>Lista de productos</h1>
+    <h1>Obras Publicadas</h1>
     <p> </p>
   </div>
   <br>
@@ -150,6 +150,8 @@
               </td>
             </tr>
             <td>
+              {% if user.is_authenticated %}
+              {% if user.email == 'admin@gmail.com' %}
               <a href="{% url 'editar_producto' producto.id %}">
                 <button class="btn btn-outline-secondary" type="submit">Editar</button>
               </a>
@@ -165,9 +167,16 @@
 
             <tr>
               <td>
-                <a href="{% url 'crear_producto' %}">
-                  <button class="btn btn-outline-secondary" type="submit">Crear</button>
+                {% if producto.aprobado %}
+                <span class="text-success">Aprobado</span>
+                {% else %}
+                <a href="{% url 'aprobar_producto' producto.id %}">
+                  <button class="btn btn-outline-secondary" type="submit">Aprobar</button>
                 </a>
+                {% endif %}
+
+                {% endif %}
+                {% endif %}
               </td>
             </tr>
 

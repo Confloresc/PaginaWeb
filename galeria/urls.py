@@ -52,6 +52,11 @@ urlpatterns = [
         login_required(views.eliminar_producto),
         name="eliminar_producto",
     ),
+    path(
+        "productos/aprobar/<int:producto_id>/",
+        login_required(views.aprobar_producto),
+        name="aprobar_producto",
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
