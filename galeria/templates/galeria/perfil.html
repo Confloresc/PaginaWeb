@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,60 +53,73 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
+          </li>
+          {% endif %}
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
-        </form>
-        <nav class="navbar bg-body-tertiary">
-          <div>
-            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
-
-          </div>
-
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-3">
+            {% if user.is_authenticated %}
+            Bienvenid@ {{ user.username }}
+            {% endif %}
+          </p>
+          <form class="d-flex" role="search">
+            <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+          </form>
+        </div>
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la sesión</button></a>
+          {% else %}
+          <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
+              Sesión</button></a>
+          <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+          {% endif %}
+        </div>
+        <div>
           <a class="navbar-brand Carro" href="{% url 'index' %}">
             <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-             
           </a>
-        </nav>
+        </div>
       </div>
     </div>
   </nav>
 
 
-
   <div class="container-producto-1">
-  <div class="sub-container-producto-1">
-    
-  <!--Carrusel-->
+    <div class="sub-container-producto-1">
 
-  <div id="carouselExampleFade" class="carousel slide carousel-fade">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'img/artistas/escultora.png' %}" class="d-block w-100" alt="...">
+      <!--Carrusel-->
+
+      <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'img/artistas/escultora.png' %}" class="d-block w-100" alt="...">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
-  
 
-  <div class="sub-container-producto-2">
-    <table class="table">
+
+    <div class="sub-container-producto-2">
+      <table class="table">
         <tbody>
           <div class="media-body mb-6">
             <h2 class="mt-6 mb-6">Lorenza Gaete</h2>
             <p class="small mb-6"> <i class="fa fa-map-marker mr-2"></i> Santiago de Chile</p>
           </div>
           <tr>
-            <th scope="row">Acerca de:</th>               
+            <th scope="row">Acerca de:</th>
           </tr>
           <tr>
             <th scope="row">Nacimiento:</th>
-            <td>8 de diciembre de 1982</td>                
+            <td>8 de diciembre de 1982</td>
           </tr>
           <tr>
             <th scope="row">Técnica:</th>
-            <td>Escultura</td>                
+            <td>Escultura</td>
           </tr>
           <tr>
             <th scope="row">Premios:</th>
@@ -113,70 +127,19 @@
           </tr>
           <tr>
             <th scope="row">Descripción:</th>
-            <td>Inspirada en las manifestaciones visuales de las emociones humanas, me he dedicado más de 25 años de carrera en transparentar el aire disruptivo y orgánico del cuerpo humano a través de la escultura, técnica que en mis palabras “une a todas las disciplinas”: el ritmo de la música, la línea del dibujo, el color de la pintura y la tangibilidad en la arquitectura.
+            <td>Inspirada en las manifestaciones visuales de las emociones humanas, me he dedicado más de 25 años de
+              carrera en transparentar el aire disruptivo y orgánico del cuerpo humano a través de la escultura, técnica
+              que en mis palabras “une a todas las disciplinas”: el ritmo de la música, la línea del dibujo, el color de
+              la pintura y la tangibilidad en la arquitectura.
             </td>
-          </tr>              
+          </tr>
         </tbody>
       </table>
       <a href="#" class="btn btn-outline-secondary">Editar perfil</a>
-</div>
-</div>
-</div>
-
-
-
-
-<div class="container col-lg-6 col-sm-12 my-5">
-  <h5 class="text-center">Subir Nueva Obra</h5>
-  <div class="py-4 bg-light rounded shadow-sm px-3 cargaobra">
-    <div class="mb-3 ">
-
-      <label for="exampleFormControlInput1" class="form-label">Titulo de la Obra</label>
-      <input type="titulo" class="form-control" id="titulo" placeholder="">
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Categoría</label>
-      <input type="categoria" class="form-control" id="categoria" placeholder="">
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Medidas</label>
-        <input type="medidas" class="form-control" id="medidas" placeholder="">
-      </div>
-    </div>
-
-    <div class="input-group mb-3">
-      <span class="input-group-text">CLP</span>
-      <input type="monto" class="form-control" id="monto" placeholder="">
-      <span class="input-group-text">.00</span>
-    </div>
-
-    <div class="mb-3">
-      <label for="formFile" class="form-label">Archivo</label>
-      <input class="form-control" type="file" id="formFile">
-    </div>
-    <div class="d-flex justify-content-end">
-      <button id="boton" type="submit" class="btn btn-secondary">
-        <span id="button-text">Subir Archivo</span>
-        <span id="button-loader" class="loader"></span>
-      </button>
-      <div id="archivoCargadoModal" class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Archivo Cargado</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>El archivo se ha cargado exitosamente.</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
+      <a href="{% url 'crear_producto' %}" class="btn btn-outline-secondary">Cargar Obra</a>
     </div>
   </div>
-
-</div>
+  </div>
 
 
 </body>
@@ -195,10 +158,11 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
+          <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block"
+            style="margin-top: -10px;">
         </a>
-    </div>
-    
+      </div>
+
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>
@@ -208,7 +172,7 @@
     </div>
   </div>
   <hr class="solid">
-  
+
   <!-- Grid container -->
   <div class="container pt-4  col-lg-6 px-5">
     <!-- Section: Social media -->
@@ -271,5 +235,3 @@
   integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 
 </html>
-  
-

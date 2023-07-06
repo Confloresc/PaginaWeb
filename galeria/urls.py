@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import login_required
 
 
 def es_admin(user):
@@ -35,19 +35,21 @@ urlpatterns = [
     path("artistas/", views.artistas, name="artistas"),
     path("registro/", views.registro, name="registro"),
     path("productos/", views.lista_productos, name="lista_productos"),
+    path("perfiladm/", views.perfil_administrador, name="perfil_administrador"),
+    path("logout/", views.logout_view, name="logout"),
     path(
         "productos/crear/",
-        user_passes_test(es_admin)(views.crear_producto),
+        login_required(views.crear_producto),
         name="crear_producto",
     ),
     path(
         "productos/editar/<int:producto_id>/",
-        user_passes_test(es_admin)(views.editar_producto),
+        login_required(views.editar_producto),
         name="editar_producto",
     ),
     path(
         "productos/eliminar/<int:producto_id>/",
-        user_passes_test(es_admin)(views.eliminar_producto),
+        login_required(views.eliminar_producto),
         name="eliminar_producto",
     ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

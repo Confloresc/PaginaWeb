@@ -52,25 +52,39 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
-        </form>
-        <nav class="navbar bg-body-tertiary">
-          <div>
-            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
-
-          </div>
-
-          <a class="navbar-brand Carro" href="{% url 'index' %}">
-            <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-             
-          </a>
-        </nav>
-      </div>
+          {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
+                </li>
+                {% endif %}
+            </ul>
+            <div class="d-flex align-items-center">
+                <p class="mb-0 me-3">
+                    {% if user.is_authenticated %}
+                    Bienvenid@ {{ user.username }}
+                    {% endif %}
+                </p>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+                </form>
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la sesión</button></a>
+                {% else %}
+                <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesión</button></a>
+                <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+                {% endif %}
+            </div>
+            <div>
+                <a class="navbar-brand Carro" href="{% url 'index' %}">
+                    <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
+                </a>
+            </div>
+        </div>
     </div>
-  </nav>
+</nav>
+
 
 
   <!-- TITULAR -->

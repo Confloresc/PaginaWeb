@@ -1,13 +1,18 @@
 from audioop import reverse
 from imaplib import _Authenticator
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.shortcuts import render, redirect
 from .models import UsuarioForm, FormRegistro, Producto, Imagen, Usuario2
 from .forms import ProductoForm, ImagenForm
-from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import login as auth_login, authenticate, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
+
+global user
 
 
 def index(request):
@@ -47,23 +52,20 @@ def loginForm(request):
         except Usuario2.DoesNotExist:
             usuario_personalizado = None
 
-        # Verificar la contraseña según la tabla correspondiente
+        # Autenticar al usuario según la tabla correspondiente
         if usuario_auth and usuario_auth.check_password(clave):
             # Usuario encontrado en la tabla de usuarios autenticados (auth_user)
             # Autenticar al usuario y realizar el inicio de sesión
             user = authenticate(request, username=usuario_auth.username, password=clave)
             if user is not None:
-                auth_login(request, user)  # Corregir la llamada a la función login
+                auth_login(request, user)
                 return redirect("index")
         elif usuario_personalizado is not None and usuario_personalizado.clave == clave:
             # Usuario encontrado en la tabla personalizada (Usuario2)
             # Autenticar al usuario y realizar el inicio de sesión
-            user = authenticate(
-                request, username=usuario_personalizado.username, password=clave
-            )
-            if user is not None:
-                auth_login(request, user)  # Corregir la llamada a la función login
-                return redirect("index")
+            user = Usuario2.objects.get(correo=correo)
+            auth_login(request, user)
+            return redirect("index")
 
         # Credenciales inválidas, mostrar un mensaje de error
         error_message = "Credenciales inválidas, por favor intenta nuevamente."
@@ -173,25 +175,43 @@ def artistas(request):
     return render(request, "galeria/artistas.html", {})
 
 
+def perfil_administrador(request):
+    return render(request, "galeria/perfil_administrador.html", {})
+
+
+@login_required(login_url="login")
 def lista_productos(request):
     productos = Producto.objects.all()
     return render(request, "galeria/lista_productos.html", {"productos": productos})
 
 
+@login_required(login_url="login")
 def crear_producto(request):
     if request.method == "POST":
         form = ProductoForm(request.POST)
         if form.is_valid():
-            producto = form.save()
+            producto = form.save(commit=False)
+
+            if not request.user.is_superuser:
+                Usuario2 = get_user_model()
+                usuario2 = Usuario2.objects.get(correo=request.user.email)
+                producto.autor = usuario2
+                producto.email_autor = request.user.email
+
+            producto.save()
+
             imagenes = request.FILES.getlist("imagenes")
             for imagen in imagenes:
                 Imagen.objects.create(producto=producto, imagen=imagen)
-            return redirect("lista_productos")
+
+            return redirect("productos")
     else:
         form = ProductoForm()
+
     return render(request, "galeria/crear_producto.html", {"form": form})
 
 
+@login_required(login_url="login")
 def editar_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     if request.method == "POST":
@@ -202,7 +222,7 @@ def editar_producto(request, producto_id):
             Imagen.objects.filter(producto=producto).delete()
             for imagen in imagenes:
                 Imagen.objects.create(producto=producto, imagen=imagen)
-            return redirect("lista_productos")
+            return redirect("productos")
     else:
         form = ProductoForm(instance=producto)
     return render(
@@ -210,9 +230,15 @@ def editar_producto(request, producto_id):
     )
 
 
+@login_required(login_url="login")
 def eliminar_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     if request.method == "POST":
         producto.delete()
-        return redirect("lista_productos")
+        return redirect("productos")
     return render(request, "galeria/eliminar_producto.html", {"producto": producto})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("index")
