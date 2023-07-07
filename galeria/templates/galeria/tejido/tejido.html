@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +19,8 @@
 
 <body id="principal">
 
-  <!--Barra de navegación-->
 
+  <!--Barra de navegación-->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="{% url 'index' %}">
@@ -49,50 +50,59 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
           </li>
+          {% if user.is_authenticated %}
+          {% if user.email == 'admin@gmail.com' %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
-          {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
-                </li>
-                {% endif %}
-            </ul>
-            <div class="d-flex align-items-center">
-                <p class="mb-0 me-3">
-                    {% if user.is_authenticated %}
-                    Bienvenid@ {{ user.username }}
-                    {% endif %}
-                </p>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
-                </form>
-            </div>
-            <div>
-                {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la sesión</button></a>
-                {% else %}
-                <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesión</button></a>
-                <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
-                {% endif %}
-            </div>
-            <div>
-                <a class="navbar-brand Carro" href="{% url 'index' %}">
-                    <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-                </a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Obras Publicadas</a>
+          </li>
+          {% endif %}
+          {% endif %}
+
+        </ul>
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-3">
+            {% if user.is_authenticated %}
+            Bienvenid@ {{ user.username }}
+            {% endif %}
+          </p>
+          <form class="d-flex" role="search">
+            <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+          </form>
         </div>
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la
+              sesión</button></a>
+          {% else %}
+          <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
+              Sesión</button></a>
+          <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+          {% endif %}
+        </div>
+        <div>
+          <a class="navbar-brand Carro" href="{% url 'index' %}">
+            <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
+          </a>
+        </div>
+      </div>
     </div>
-</nav>
+  </nav>
 
 
 
-   <!-- TITULAR -->
+  <!-- TITULAR -->
 
-   <div class="container mt-5 text-center">
+  <div class="container mt-5 text-center">
     <div class="row">
       <h1>María Cortés</h1>
-        <h4>Artista Tejedora</h4>
+      <h4>Artista Tejedora</h4>
       <div class="col-12">
         <div class="col-sm-12 col-lg-5">
         </div>
@@ -102,41 +112,41 @@
 
 
 
-<!-- catalogo -->
+  <!-- catalogo -->
 
-<div class="container tejido text-center">
-  <div class="row">
-    <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/tejido/tejido1/t1prin.png' %}" class="card-img-top" alt="t1">
-        <div class="card-body">
-          <a href="{% url 'tejido1' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+  <div class="container tejido text-center">
+    <div class="row">
+      <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/tejido/tejido1/t1prin.png' %}" class="card-img-top" alt="t1">
+          <div class="card-body">
+            <a href="{% url 'tejido1' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/tejido/tejido2/t2prin.png' %}" class="card-img-top" alt="t2">
-        <div class="card-body">
-          <a href="{% url 'tejido2' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+      <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/tejido/tejido2/t2prin.png' %}" class="card-img-top" alt="t2">
+          <div class="card-body">
+            <a href="{% url 'tejido2' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/tejido/tejido3/t3prin.png' %}" class="card-img-top" alt="t3">
-        <div class="card-body">
-          <a href="{% url 'tejido3' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+      <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/tejido/tejido3/t3prin.png' %}" class="card-img-top" alt="t3">
+          <div class="card-body">
+            <a href="{% url 'tejido3' %}" type="button" class="btn btn-outline-secondary">V E R</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
-      <div class="card">
-        <img src="{% static 'img/PROXIMAMENTE.png' %}" class="card-img-top" alt="PRO">
+      <div class="tejido col-md-3 mb-1 mb-sm-4 pt-5">
+        <div class="card">
+          <img src="{% static 'img/PROXIMAMENTE.png' %}" class="card-img-top" alt="PRO">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </body>
 
@@ -154,10 +164,11 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
+          <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block"
+            style="margin-top: -10px;">
         </a>
-    </div>
-    
+      </div>
+
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>
@@ -167,7 +178,7 @@
     </div>
   </div>
   <hr class="solid">
-  
+
   <!-- Grid container -->
   <div class="container pt-4  col-lg-6 px-5">
     <!-- Section: Social media -->

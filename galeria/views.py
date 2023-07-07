@@ -1,7 +1,14 @@
 import time
 from django.urls import reverse
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import UsuarioForm, FormRegistro, Producto, Imagen, Usuario2, User
+from .models import (
+    UsuarioForm,
+    FormRegistro,
+    Producto,
+    Imagen,
+    Usuario2,
+    User,
+)
 from .forms import ProductoForm, ImagenForm
 from django.contrib.auth import login as auth_login, authenticate, get_user_model
 from django.contrib.auth.decorators import login_required
@@ -182,16 +189,23 @@ def perfil_administrador(request):
     return render(request, "galeria/perfil_administrador.html", {})
 
 
-@login_required(login_url="login")
+from django.db.models import Q
+
+
 def lista_productos(request):
     if request.user.email == "admin@gmail.com":
-        # Si el usuario es el superusuario "admin@gmail.com", mostrar todos los productos
-        productos = Producto.objects.all()
+        productos = Producto.objects.exclude(Q(aprobado=True) | Q(rechazado=True))
     else:
-        # Si no es el superusuario, mostrar solo los productos aprobados
-        productos = Producto.objects.filter(aprobado=True)
-
+        productos = Producto.objects.filter(Q(aprobado=True) | Q(rechazado=True))
     return render(request, "galeria/lista_productos.html", {"productos": productos})
+
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 
 @login_required(login_url="login")
@@ -217,11 +231,16 @@ def crear_producto(request):
             if request.user.email == "admin@gmail.com":
                 mensaje = "Producto creado con éxito"
 
+            messages.success(
+                request, mensaje
+            )  # Establecer el mensaje en la variable de sesión
+
             return render(
                 request,
                 "galeria/crear_producto.html",
-                {"form": form, "mensaje": mensaje},
+                {"form": form, "mensaje": mensaje, "redireccionar": True},
             )
+
     else:
         form = ProductoForm()
 
@@ -231,19 +250,38 @@ def crear_producto(request):
 @login_required(login_url="login")
 def editar_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
+
+    # Verificar si el usuario es el administrador
+    if request.user.email == "admin@gmail.com":
+        editado_por_admin = True
+    else:
+        editado_por_admin = False
+
     if request.method == "POST":
         form = ProductoForm(request.POST, instance=producto)
         if form.is_valid():
-            producto = form.save()
+            producto = form.save(commit=False)
+
+            # Marcar como no aprobado si no fue editado por el administrador
+            if not editado_por_admin:
+                producto.aprobado = False
+                producto.rechazado = False
+                producto.mensaje_rechazo = ""
+
+            producto.save()
+
             imagenes = request.FILES.getlist("imagenes")
             Imagen.objects.filter(producto=producto).delete()
             for imagen in imagenes:
                 Imagen.objects.create(producto=producto, imagen=imagen)
-            return redirect(reverse("lista_productos"))  # Utilizamos reverse aquí
+
+            return redirect("lista_productos")
     else:
         form = ProductoForm(instance=producto)
     return render(
-        request, "galeria/editar_producto.html", {"form": form, "producto": producto}
+        request,
+        "galeria/editar_producto.html",
+        {"form": form, "producto": producto, "editado_por_admin": editado_por_admin},
     )
 
 
@@ -270,4 +308,38 @@ def aprobar_producto(request, producto_id):
         return redirect("lista_productos")
     else:
         error_message = "No tienes permiso para aprobar productos."
+        return render(request, "galeria/error.html", {"error_message": error_message})
+
+
+@login_required(login_url="login")
+def aprobar_cambios(request, producto_id):
+    if request.user.email == "admin@gmail.com":
+        producto = get_object_or_404(Producto, id=producto_id)
+        producto.aprobado = True
+        producto.save()
+        return redirect("lista_productos")
+    else:
+        error_message = "No tienes permiso para aprobar los cambios de productos."
+        return render(request, "galeria/error.html", {"error_message": error_message})
+
+
+from django.contrib import messages
+
+
+@login_required(login_url="login")
+def rechazar_producto(request, producto_id):
+    if request.user.email == "admin@gmail.com":
+        producto = get_object_or_404(Producto, id=producto_id)
+        if request.method == "POST":
+            mensaje = request.POST.get("mensaje_rechazo", "")
+            producto.rechazado = True
+            producto.mensaje_rechazo = mensaje
+            producto.save()
+            return redirect("lista_productos")
+        else:
+            return render(
+                request, "galeria/rechazar_producto.html", {"producto": producto}
+            )
+    else:
+        error_message = "No tienes permiso para rechazar productos."
         return render(request, "galeria/error.html", {"error_message": error_message})

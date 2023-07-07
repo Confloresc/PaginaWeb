@@ -35,6 +35,11 @@ urlpatterns = [
     path("artistas/", views.artistas, name="artistas"),
     path("registro/", views.registro, name="registro"),
     path("productos/", views.lista_productos, name="lista_productos"),
+    path(
+        "productos/rechazar/<int:producto_id>/",
+        views.rechazar_producto,
+        name="rechazar_producto",
+    ),
     path("perfiladm/", views.perfil_administrador, name="perfil_administrador"),
     path("logout/", views.logout_view, name="logout"),
     path(

@@ -5,9 +5,17 @@ from .models import Producto, Imagen
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = "__all__"
+        fields = [
+            "autor",
+            "titulo",
+            "año",
+            "descripcion",
+            "tipos_de_obra",
+        ]
         widgets = {
             "aprobado": forms.HiddenInput(),
+            "rechazado": forms.HiddenInput(),
+            "mensaje_rechazo": forms.HiddenInput(),
         }
 
 

@@ -56,6 +56,8 @@ class Producto(models.Model):
     aprobado = models.BooleanField(
         default=False
     )  # Campo para indicar si el producto está aprobado
+    rechazado = models.BooleanField(default=False)
+    mensaje_rechazo = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.titulo
