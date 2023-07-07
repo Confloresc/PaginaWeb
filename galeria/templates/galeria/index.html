@@ -35,18 +35,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Categorias
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'pinturas' %}">Pintura</a></li>
-                            <li><a class="dropdown-item" href="{% url 'esculturas' %}">Escultura</a></li>
-                            <li><a class="dropdown-item" href="{% url 'orfebreria' %}">Orfebreria</a></li>
-                            <li><a class="dropdown-item" href="{% url 'tejido' %}">Tejido</a></li>
-                            <li><a class="dropdown-item" href="{% url 'categoria' %}">Ver Todo</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'categoria' %}">Categorias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'artistas' %}">Artistas</a>
@@ -55,14 +45,14 @@
                         <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                     </li>
                     {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
+                    </li>
                     {% if user.email == 'admin@gmail.com' %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
                     </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lista_productos' %}">Obras Publicadas</a>
                     </li>
