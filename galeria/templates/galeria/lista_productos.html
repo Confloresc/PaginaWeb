@@ -91,7 +91,10 @@
 
   <div class="title-login container mt-5">
     <h1>Obras Publicadas</h1>
-    <p> </p>
+    <a href="{% url 'crear_producto' %}">
+      <button class="btn btn-outline-secondary btn-crear" type="submit">Crear</button>
+    </a>
+    
   </div>
   <br>
 
@@ -102,90 +105,54 @@
     <div class="container-centered">
 
       {% csrf_token %}
-      <div class="sub-container-producto-2">
+      <div class="sub-container-producto-2 table-responsive">
 
 
         <table class="table">
-
-          <tbody>
+          <thead class="table-list-product">
+            <tr>
+              <th scope="col">Título</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Tipos</th>             
+              <th scope="col">Año</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Imagenes</th>
+              <th scope="col" colspan="2">Acciones</th>
+            </tr>
+          </thead>
+          <tbody class="table-list-product">
+          
             {% for producto in productos %}
             <tr>
-
-              <td class="custom-cell">
-                {% for imagen in producto.imagen_set.all %}
-                <img src="{{ imagen.imagen.url }}" alt="Imagen del producto" width="200">
-                {% endfor %}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Título:</th>
               <td class="custom-cell">{{ producto.titulo }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Año:</th>
-              <td class="custom-cell">{{ producto.año }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Categoría:</th>
-              <td class="custom-cell">{{ producto.categoria }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Valor:</th>
-              <td class="custom-cell">{{ producto.valor }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Descripción:</th>
-              <td class="custom-cell">{{ producto.descripcion }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Autor:</th>
               <td class="custom-cell">{{ producto.autor.nombre }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Tipos:</th>
               <td class="custom-cell">
                 {% for tipo in producto.tipos_de_obra.all %}
                 {{ tipo.tipo }}
                 {% endfor %}
               </td>
-            </tr>
-            <td>
-              {% if user.is_authenticated %}
-              {% if user.email == 'admin@gmail.com' %}
-              <a href="{% url 'editar_producto' producto.id %}">
-                <button class="btn btn-outline-secondary" type="submit">Editar</button>
-              </a>
-            </td>
-
-            <tr>
+              <td class="custom-cell">{{ producto.año }}</td>
+              <td class="custom-cell">{{ producto.valor }}</td>
+              <td class="custom-cell">{{ producto.descripcion }}</td>
+              <td class="custom-cell">
+                {% for imagen in producto.imagen_set.all %}
+                <img src="{{ imagen.imagen.url }}" alt="Imagen del producto" width="100">
+                {% endfor %}
+              </td>
+              <td>
+                <a href="{% url 'editar_producto' producto.id %}">
+                  <button class="btn btn-outline-secondary" type="submit">Editar</button>
+                </a>
+              </td>
               <td>
                 <a href="{% url 'eliminar_producto' producto.id %}">
                   <button class="btn btn-outline-secondary" type="submit">Eliminar</button>
                 </a>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                {% if producto.aprobado %}
-                <span class="text-success">Aprobado</span>
-                {% else %}
-                <a href="{% url 'aprobar_producto' producto.id %}">
-                  <button class="btn btn-outline-secondary" type="submit">Aprobar</button>
-                </a>
-                {% endif %}
-
-                {% endif %}
-                {% endif %}
-              </td>
-            </tr>
-
-
-
-            </td>
-            </tr>
+              </td>              
+            </tr>              
             {% endfor %}
-          </tbody>
+         </tbody>
         </table>
       </div>
     </div>

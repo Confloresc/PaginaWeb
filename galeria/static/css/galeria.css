@@ -125,7 +125,7 @@ hr.solid {
 
 .sub-container-producto-2 {
   float: left;
-  width: 60%;
+  width: 90%;
   padding-left: 3%;
   padding-top: 3%;
 }
@@ -232,3 +232,21 @@ hr.solid {
   margin-bottom: 30px;
 }
 
+.table-list-product{
+  border-bottom-style: solid;
+  border-color: blue;
+    
+}
+
+.table-list-product th, .table-list-product td{
+  text-align: center;
+}
+
+.btn-crear{  
+  position: absolute;
+  top: 12%;
+  left:92%;
+  padding: 1%;
+  background-color: rgba(0, 128, 0, 0.553);
+  color: white;
+}
