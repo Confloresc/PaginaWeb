@@ -16,6 +16,7 @@ class ProductoForm(forms.ModelForm):
             "aprobado": forms.HiddenInput(),
             "rechazado": forms.HiddenInput(),
             "mensaje_rechazo": forms.HiddenInput(),
+            "tipos_de_obra": forms.HiddenInput(),
         }
 
 
