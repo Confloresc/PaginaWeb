@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +19,9 @@
 
 <body id="principal">
 
-  <!--Barra de navegación-->
 
+
+  <!--Barra de navegación-->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="{% url 'index' %}">
@@ -49,28 +51,51 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
           </li>
+          {% if user.is_authenticated %}
+          {% if user.email == 'admin@gmail.com' %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Obras Publicadas</a>
+          </li>
+          {% endif %}
+          {% endif %}
+
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
-        </form>
-        <nav class="navbar bg-body-tertiary">
-          <div>
-            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
-
-          </div>
-
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-3">
+            {% if user.is_authenticated %}
+            Bienvenid@ {{ user.username }}
+            {% endif %}
+          </p>
+          <form class="d-flex" role="search">
+            <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+          </form>
+        </div>
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la
+              sesión</button></a>
+          {% else %}
+          <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
+              Sesión</button></a>
+          <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+          {% endif %}
+        </div>
+        <div>
           <a class="navbar-brand Carro" href="{% url 'index' %}">
             <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-             
           </a>
-        </nav>
+        </div>
       </div>
     </div>
   </nav>
+
 
   <!--Tarjetas de Artistas-->
 
@@ -84,7 +109,8 @@
               Lorenza Gaete
             </h2>
             <p class="card-text">
-              Experta en el arte de modelar, tallar o esculpir en algunos materiales figuras en tres dimensiones. Nacida en Chiloe, hizo una pasantía en Italia, ya de regreso para compartir su arte.
+              Experta en el arte de modelar, tallar o esculpir en algunos materiales figuras en tres dimensiones. Nacida
+              en Chiloe, hizo una pasantía en Italia, ya de regreso para compartir su arte.
             </p>
             <a href="{% url 'esculturas' %}" type="button" class="btn btn-outline-secondary">
               E S C U L T U R A S
@@ -92,7 +118,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-md-3">
         <div class="card mx-4" style="width: 18rem;">
           <img src="{% static 'img/artistas/orfebre.png' %}" class="card-img-top" alt="artista1">
@@ -101,7 +127,8 @@
               Javiera Reyes
             </h2>
             <p class="card-text">
-              Iquiqueña que residió 10 años en Colombia donde aprendió el arte de la orfebrería, elabora hermosas piezas de arte con metales preciosos. Es conocida por realizar la joyería exclusiva de la alta sociedad.
+              Iquiqueña que residió 10 años en Colombia donde aprendió el arte de la orfebrería, elabora hermosas piezas
+              de arte con metales preciosos. Es conocida por realizar la joyería exclusiva de la alta sociedad.
             </p>
             <a href="{% url 'orfebreria' %}" type="button" class="btn btn-outline-secondary">
               O R F E B R E R I A
@@ -109,7 +136,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-md-3">
         <div class="card mx-4" style="width: 18rem;">
           <img src="{% static 'img/artistas/pintora.png' %}" class="card-img-top" alt="artista1">
@@ -117,7 +144,9 @@
             <h2 class="card-title">
               Lucy Graham
             </h2>
-            <p class="card-text">Nacida y criada en el altiplano chileno, experta en trabajar la lana de llamas y alpacas, ejecuta sus obras desde el conocimiento de sus antepasados lo que la ha destacado en la industria.
+            <p class="card-text">Nacida y criada en el altiplano chileno, experta en trabajar la lana de llamas y
+              alpacas, ejecuta sus obras desde el conocimiento de sus antepasados lo que la ha destacado en la
+              industria.
             </p>
             <a href="{% url 'pinturas' %}" type="button" class="btn btn-outline-secondary">
               P I N T U R A S
@@ -125,7 +154,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-md-3">
         <div class="card mx-4" style="width: 18rem;">
           <img src="{% static 'img/artistas/tejedora.png' %}" class="card-img-top" alt="artista1">
@@ -133,7 +162,9 @@
             <h2 class="card-title">
               María Cortés
             </h2>
-            <p class="card-text">Nacida y criada en el altiplano chileno, experta en trabajar la lana de llamas y alpacas, ejecuta sus obras desde el conocimiento de sus antepasados lo que la ha destacado en la industria.
+            <p class="card-text">Nacida y criada en el altiplano chileno, experta en trabajar la lana de llamas y
+              alpacas, ejecuta sus obras desde el conocimiento de sus antepasados lo que la ha destacado en la
+              industria.
             </p>
             <a href="{% url 'tejido' %}" type="button" class="btn btn-outline-secondary">
               T E J I D O
@@ -143,7 +174,7 @@
       </div>
     </div>
   </div>
-  
+
 
 
 </body>
@@ -164,10 +195,11 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
+          <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block"
+            style="margin-top: -10px;">
         </a>
-    </div>
-    
+      </div>
+
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>
@@ -177,7 +209,7 @@
     </div>
   </div>
   <hr class="solid">
-  
+
   <!-- Grid container -->
   <div class="container pt-4  col-lg-6 px-5">
     <!-- Section: Social media -->
@@ -240,5 +272,3 @@
   integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 
 </html>
-  
-

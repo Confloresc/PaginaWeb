@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +19,9 @@
 
 <body id="principal">
 
-  <!--Barra de navegación-->
 
+
+  <!--Barra de navegación-->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="{% url 'index' %}">
@@ -49,90 +51,112 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
           </li>
+          {% if user.is_authenticated %}
+          {% if user.email == 'admin@gmail.com' %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Panel Administrador</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Obras Publicadas</a>
+          </li>
+          {% endif %}
+          {% endif %}
+
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
-        </form>
-        <nav class="navbar bg-body-tertiary">
-          <div>
-            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
-
-          </div>
-
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-3">
+            {% if user.is_authenticated %}
+            Bienvenid@ {{ user.username }}
+            {% endif %}
+          </p>
+          <form class="d-flex" role="search">
+            <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+          </form>
+        </div>
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la
+              sesión</button></a>
+          {% else %}
+          <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
+              Sesión</button></a>
+          <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+          {% endif %}
+        </div>
+        <div>
           <a class="navbar-brand Carro" href="{% url 'index' %}">
             <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-             
           </a>
-        </nav>
+        </div>
       </div>
     </div>
   </nav>
 
- 
-<div class="container-producto-1">
-  <div class="sub-container-producto-1">
-    
-  <!--Carrusel-->
 
-  <div id="carouselExampleFade" class="carousel slide carousel-fade">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'img/tejido/tejido1/t1prin.png' %}" class="d-block w-100" alt="...">
-      </div>
+  <div class="container-producto-1">
+    <div class="sub-container-producto-1">
 
-      <div class="carousel-item">
-        <img src="{% static 'img/tejido/tejido1/te1.png' %}" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'img/tejido/tejido1/te2.png' %}" class="d-block w-100" alt="...">
-      </div>
+      <!--Carrusel-->
 
-      <div class="carousel-item">
-        <img src="{% static 'img/tejido/tejido1/te3.png' %}" class="d-block w-100" alt="...">
-      </div>
+      <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'img/tejido/tejido1/t1prin.png' %}" class="d-block w-100" alt="...">
+          </div>
 
+          <div class="carousel-item">
+            <img src="{% static 'img/tejido/tejido1/te1.png' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'img/tejido/tejido1/te2.png' %}" class="d-block w-100" alt="...">
+          </div>
+
+          <div class="carousel-item">
+            <img src="{% static 'img/tejido/tejido1/te3.png' %}" class="d-block w-100" alt="...">
+          </div>
+
+        </div>
+
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
 
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  </div>
 
 
-  
-
-  <div class="sub-container-producto-2">
-    <table class="table">
-      <h4> REALIDAD DE ILUSIÓN </h4>
+    <div class="sub-container-producto-2">
+      <table class="table">
+        <h4> REALIDAD DE ILUSIÓN </h4>
         <thead>
           <tr>
             <th scope="col" colspan="2">Detalle del Producto</th>
-            <th scope="col"></th>                
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">Autor:</th>
-            <td>María Cortés</td>                
+            <td>María Cortés</td>
           </tr>
           <tr>
             <th scope="row">Año:</th>
-            <td>2023</td>                
+            <td>2023</td>
           </tr>
           <tr>
             <th scope="row">Categoria:</th>
-            <td>Lana de Alpaca</td>                
+            <td>Lana de Alpaca</td>
           </tr>
           <tr>
             <th scope="row">Valor:</th>
@@ -142,50 +166,50 @@
             <th scope="row">Descripción:</th>
             <td>Espejo con diseño moderno con inspiración autoctona, elaborado con Lana de Alpaca reciclada.
             </td>
-          </tr>              
+          </tr>
         </tbody>
       </table>
 
       <a href="{% url 'tejido' %}" type="button" class="btn btn-outline-secondary">VOLVER</a>
-      <button id="btn-effect" type="button" class="btn btn-secondary">Agregar al Carro</button>  
-</div>
+      <button id="btn-effect" type="button" class="btn btn-secondary">Agregar al Carro</button>
+    </div>
 
-</div>
+  </div>
 
 
-<div class="container-producto-1">
+  <div class="container-producto-1">
 
-<div class="title-producto">
-    <h3>OTRAS OBRAS</h3>
+    <div class="title-producto">
+      <h3>OTRAS OBRAS</h3>
 
-</div>
+    </div>
 
     <div class="sub-container-img">
-        <div class="sub-container-img-1">
-          <a href="{% url 'pintura1' %}">
-            <img src="{% static 'img/pintura/p1/p1 principal.png' %}" class="img-fluid img-producto-1">
-          </a>
-        </div>
-        <div class="sub-container-img-1">
-          <a href="{% url 'tejido3' %}">
-            <img src="{% static 'img/tejido/tejido3/t3prin.png' %}" class="img-fluid img-producto-1">
-          </a>
-        </div>
-        <div class="sub-container-img-1">
-          <a href="{% url 'collar' %}">
-            <img src="{% static 'img/orfebrería/collar/collar1.png' %}" class="img-fluid img-producto-1">
-          </a>
-        </div>
-        <div class="sub-container-img-1">
-          <a href="{% url 'aretes' %}">
-            <img src="{% static 'img/orfebrería/aretes/a1.png' %}" class="img-fluid img-producto-1">
-          </a>
-        </div>
+      <div class="sub-container-img-1">
+        <a href="{% url 'pintura1' %}">
+          <img src="{% static 'img/pintura/p1/p1 principal.png' %}" class="img-fluid img-producto-1">
+        </a>
+      </div>
+      <div class="sub-container-img-1">
+        <a href="{% url 'tejido3' %}">
+          <img src="{% static 'img/tejido/tejido3/t3prin.png' %}" class="img-fluid img-producto-1">
+        </a>
+      </div>
+      <div class="sub-container-img-1">
+        <a href="{% url 'collar' %}">
+          <img src="{% static 'img/orfebrería/collar/collar1.png' %}" class="img-fluid img-producto-1">
+        </a>
+      </div>
+      <div class="sub-container-img-1">
+        <a href="{% url 'aretes' %}">
+          <img src="{% static 'img/orfebrería/aretes/a1.png' %}" class="img-fluid img-producto-1">
+        </a>
+      </div>
 
 
     </div>
 
-</div>
+  </div>
 
 </body>
 
@@ -203,10 +227,11 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
+          <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block"
+            style="margin-top: -10px;">
         </a>
-    </div>
-    
+      </div>
+
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>
@@ -216,7 +241,7 @@
     </div>
   </div>
   <hr class="solid">
-  
+
   <!-- Grid container -->
   <div class="container pt-4  col-lg-6 px-5">
     <!-- Section: Social media -->

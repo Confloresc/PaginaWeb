@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +18,6 @@
 </head>
 
 <body id="principal">
-
   <!--Barra de navegación-->
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -49,28 +49,45 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
           </li>
+
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Obras Publicadas</a>
+          </li>
+          {% endif %}
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
-        </form>
-        <nav class="navbar bg-body-tertiary">
-          <div>
-            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
-
-          </div>
-
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-3">
+            {% if user.is_authenticated %}
+            Bienvenid@ {{ user.username }}
+            {% endif %}
+          </p>
+          <form class="d-flex" role="search">
+            <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+          </form>
+        </div>
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la
+              sesión</button></a>
+          {% else %}
+          <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
+              Sesión</button></a>
+          <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+          {% endif %}
+        </div>
+        <div>
           <a class="navbar-brand Carro" href="{% url 'index' %}">
             <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-             
           </a>
-        </nav>
+        </div>
       </div>
     </div>
   </nav>
+
 
 
   <!--Tarjetas de categorias-->
@@ -105,7 +122,7 @@
         <div class="card">
           <img src="{% static 'img/categoria/tejido-cat.png' %}" class="card-img-top" alt="categorias4">
           <div class="card-body">
-            <a href="./tejido.html" type="button" class="btn btn-outline-secondary">T E J I D O</a>
+            <a href="{% url 'tejido' %}" type="button" class="btn btn-outline-secondary">T E J I D O</a>
           </div>
         </div>
       </div>
@@ -129,10 +146,11 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
+          <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block"
+            style="margin-top: -10px;">
         </a>
-    </div>
-    
+      </div>
+
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>
@@ -142,7 +160,7 @@
     </div>
   </div>
   <hr class="solid">
-  
+
   <!-- Grid container -->
   <div class="container pt-4  col-lg-6 px-5">
     <!-- Section: Social media -->

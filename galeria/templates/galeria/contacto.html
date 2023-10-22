@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% load static %}
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,91 +50,110 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
           </li>
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_productos' %}">Obras Publicadas</a>
+          </li>
+          {% endif %}
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
-        </form>
-        <nav class="navbar bg-body-tertiary">
-          <div>
-            <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar Sesion</button></a>
-            <a href="{% url 'registro' %}"><button class=" btn btn-secondary ml-2" type="submit">Registrarse</button></a>
-
-          </div>
-
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-3">
+            {% if user.is_authenticated %}
+            Bienvenid@ {{ user.username }}
+            {% endif %}
+          </p>
+          <form class="d-flex" role="search">
+            <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Search">
+          </form>
+        </div>
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"><button class="btn btn-outline-secondary">Salir de la
+              sesión</button></a>
+          {% else %}
+          <a href="{% url 'login' %}"><button class="btn btn-outline-secondary" type="submit">Iniciar
+              Sesión</button></a>
+          <a href="{% url 'registro' %}"><button class="btn btn-secondary ml-2" type="submit">Registrarse</button></a>
+          {% endif %}
+        </div>
+        <div>
           <a class="navbar-brand Carro" href="{% url 'index' %}">
             <img src="{% static 'img/carrito.png' %}" alt="Carro" width="35" height="35" class="d-inline-block">
-             
           </a>
-        </nav>
+        </div>
       </div>
     </div>
   </nav>
 
 
 
-    <div class="title-login container mt-5  ">
-      <h1>CONTACTO</h1>
-      <p> </p>
-              <p>¿Eres artista? Escríbenos y envíanos tu portafolio. Nosotros lo revisaremos y
-                nos pondremos en contacto contigo para que puedas participar de nuestra galería
-                de arte.En caso de consultas o requerimientos con respecto a la compra tambien
-                puedes escribirnos.</p>
-    </div>
-    
-      <!--Contacto-->
 
-      <div class="login bg-light rounded shadow-sm">
-        <form action="{% url 'contacto' %}" method="post">
-    
-          {% csrf_token %}
-    
-          <div class="container">
-                <div class="row mb-3 mt-3">
-                  <div class="col">
-                    <div class="mb-3">
-                      <input type="text" class="form-control" id="{{ form.nombre.id_for_label }}" placeholder="Ingresa tu Nombre" name="{{ form.nombre.html_name }}" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <input type="text" class="form-control" id="{{ form.apellido.id_for_label }}" placeholder="Ingresa tu apellido" name="{{ form.apellido.html_name }}" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <input type="email" class="form-control" id="{{ form.correo.id_for_label }}" placeholder="Correo" name="{{ form.correo.html_name }}">
-                    </div>
-  
-                    <div class="form-contact-box2 form-contact">
-                      <p>Consulta:</p>
-                       <textarea id="w3review" name="w3review" class="form-contact-box2"></textarea>
-                    </div>
-                  </div>
-                </div>
+  <div class="title-login container mt-5  ">
+    <h1>CONTACTO</h1>
+    <p> </p>
+    <p>¿Eres artista? Escríbenos y envíanos tu portafolio. Nosotros lo revisaremos y
+      nos pondremos en contacto contigo para que puedas participar de nuestra galería
+      de arte.En caso de consultas o requerimientos con respecto a la compra tambien
+      puedes escribirnos.</p>
+  </div>
 
-                <button type="submit" class="btn btn-secondary">Enviar</button>
-                {% if form.errors %}
-                <div class="alert alert-danger mt-3">
-                  <ul>
-                    {% for field in form %}
-                      {% for error in field.errors %}
-                        <li>{{ error }}</li>
-                      {% endfor %}
-                    {% endfor %}
-                  </ul>
-                </div>
-              {% endif %}
-            </form>
+  <!--Contacto-->
+
+  <div class="login bg-light rounded shadow-sm">
+    <form action="{% url 'contacto' %}" method="post">
+
+      {% csrf_token %}
+
+      <div class="container">
+        <div class="row mb-3 mt-3">
+          <div class="col">
+            <div class="mb-3">
+              <input type="text" class="form-control" id="{{ form.nombre.id_for_label }}"
+                placeholder="Ingresa tu Nombre" name="{{ form.nombre.html_name }}" required>
+            </div>
+
+            <div class="mb-3">
+              <input type="text" class="form-control" id="{{ form.apellido.id_for_label }}"
+                placeholder="Ingresa tu apellido" name="{{ form.apellido.html_name }}" required>
+            </div>
+
+            <div class="mb-3">
+              <input type="email" class="form-control" id="{{ form.correo.id_for_label }}" placeholder="Correo"
+                name="{{ form.correo.html_name }}">
+            </div>
+
+            <div class="form-contact-box2 form-contact">
+              <p>Consulta:</p>
+              <textarea id="w3review" name="w3review" class="form-contact-box2"></textarea>
+            </div>
           </div>
-      </div>
-        
+        </div>
 
-      <script src="{% static 'galeria/JavaScript/script.js' %}"></script>
+        <button type="submit" class="btn btn-secondary">Enviar</button>
+        {% if form.errors %}
+        <div class="alert alert-danger mt-3">
+          <ul>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+    </form>
+  </div>
+  </div>
 
-      
-    
-  </body>
+
+  <script src="{% static 'galeria/JavaScript/script.js' %}"></script>
+
+
+
+</body>
 
 <!-- Footer -->
 
@@ -149,10 +169,11 @@
       </div>
       <div class="col">
         <a class="navbar-brand logo" href="{% url 'index' %}">
-            <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block" style="margin-top: -10px;">
+          <img src="{% static 'img/log.png' %}" alt="Logo" width="100" height="40" class="d-inline-block"
+            style="margin-top: -10px;">
         </a>
-    </div>
-    
+      </div>
+
       <div class="col">
         <a class="linkfooter" href="">Ayuda</a>
       </div>
@@ -162,7 +183,7 @@
     </div>
   </div>
   <hr class="solid">
-  
+
   <!-- Grid container -->
   <div class="container pt-4  col-lg-6 px-5">
     <!-- Section: Social media -->
@@ -223,7 +244,5 @@
   integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
   integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-
+<script "></script>
 </html>
-  
-
